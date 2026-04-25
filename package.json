@@ -1,0 +1,25 @@
+{
+  "name": "digital-gold-platform",
+  "version": "0.1.0",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev:web": "npm --workspace @digital-gold/web run dev",
+    "dev:api": "npm --workspace @digital-gold/api run dev",
+    "dev:worker": "npm --workspace @digital-gold/worker run dev",
+    "db:migrate": "npm --workspace @digital-gold/api run migrate",
+    "test:api": "npm --workspace @digital-gold/api run test",
+    "test:worker": "npm --workspace @digital-gold/worker run test",
+    "test": "npm run test:api && npm run test:worker",
+    "validate:connected": "bash scripts/connected-mode-smoke.sh",
+    "docker:up": "docker compose up --build",
+    "docker:down": "docker compose down",
+    "docker:logs": "docker compose logs -f --tail=200",
+    "docker:ps": "docker compose ps",
+    "build": "npm run build --workspaces",
+    "typecheck": "npm run typecheck --workspaces"
+  }
+}

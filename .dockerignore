@@ -1,0 +1,9 @@
+node_modules
+npm-debug.log*
+.next
+dist
+.git
+.gitignore
+.DS_Store
+.npm-cache
+.npm-logs

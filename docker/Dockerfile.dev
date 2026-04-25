@@ -1,0 +1,19 @@
+FROM node:20-bookworm-slim
+
+WORKDIR /app
+
+# Keep image lean while supporting node-gyp/native packages when needed.
+RUN apt-get update && apt-get install -y --no-install-recommends \
+  ca-certificates \
+  curl \
+  && rm -rf /var/lib/apt/lists/*
+
+# Copy full workspace so npm installs all workspace dependencies.
+COPY package.json package-lock.json ./
+COPY apps ./apps
+COPY packages ./packages
+COPY tsconfig.base.json ./
+
+RUN npm ci
+
+EXPOSE 3000 4000
